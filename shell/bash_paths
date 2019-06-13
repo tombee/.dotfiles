@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$HOME/.dotfiles/bin:$GOROOT/bin:$GOPATH/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/lib

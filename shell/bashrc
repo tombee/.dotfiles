@@ -1,0 +1,54 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# Load global bashrc
+if [ -f /etc/bash.bashrc ]; then
+    . /etc/bash.bashrc
+fi
+
+enable_bash_completion() {
+    if [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
+}
+
+load_dotfiles() {
+    declare -a files=(
+    $HOME/.dotfiles/shell/bash_options # Options
+    $HOME/.dotfiles/shell/bash_exports # Exports
+    $HOME/.dotfiles/shell/bash_aliases # Aliases
+    $HOME/.dotfiles/shell/bash_functions # Functions
+    $HOME/.dotfiles/shell/bash_prompt # Custom bash prompt
+    $HOME/.dotfiles/shell/bash_paths # Path modifications
+    $HOME/.bash_profile.local # Local and private settings not under version control (e.g. git credentials)
+    $HOME/.profile
+    $HOME/.proxy # Temporary file to hold proxy config
+    )
+
+    # if these files are readable, source them
+    for index in ${!files[*]}
+    do
+        if [[ -r ${files[$index]} ]]; then
+            source ${files[$index]}
+        fi
+    done
+}
+
+setup_env() {
+    if [ ! -f "$HOME/.gitconfig" ]; then
+        . $HOME/.dotfiles/env-setup.sh
+    fi
+}
+
+load_dotfiles
+unset load_dotfiles
+
+enable_bash_completion
+unset enable_bash_completion
+
+setup_env
+unset setup_env

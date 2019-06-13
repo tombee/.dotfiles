@@ -1,0 +1,9 @@
+ThemeFile=flat-ui
+FontHeight=11
+FontSmoothing=full
+AllowSetSelection=yes
+FontWeight=400
+CursorType=block
+AllowBlinking=yes
+Term=xterm-256color
+Font=Consolas

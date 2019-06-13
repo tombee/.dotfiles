@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [[ $(uname) =~ MSYS_NT ]]; then
+	linux() {
+		(
+			cd ~/.dotfiles
+			vagrant status | grep 'not created' &> /dev/null && \
+				echo " -> checking for vagrant box updates" && \
+				vagrant box update
+			vagrant status | grep 'not created' &> /dev/null && \
+				echo " -> creating new linux vm, this may take a while" && \
+				vagrant up
+			vagrant status | grep 'running' &> /dev/null && \
+				echo " -> linux vm already running, attempting to connect" || \
+				(echo " -> starting existing vm" && vagrant up)
+		)
+		command ssh \
+		    -o StrictHostKeyChecking=no \
+		    -o UserKnownHostsFile=/dev/null \
+		    127.0.0.1
+	}
+fi

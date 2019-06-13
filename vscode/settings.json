@@ -1,0 +1,10 @@
+{
+    "files.insertFinalNewline": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "remote.SSH.configFile": "C:\\ProgramData\\vscode.config",
+    "remote.SSH.defaultExtensions": [
+        "ms-vscode.go"
+    ]
+}

@@ -1,0 +1,33 @@
+call plug#begin(expand('~/.vim/plugged'))
+	Plug 'scrooloose/nerdtree'
+	Plug 'w0ng/vim-hybrid'
+	Plug 'tpope/vim-abolish'
+	Plug 'christoomey/vim-tmux-navigator'
+call plug#end()
+
+set noswapfile
+
+" Theme
+syntax enable
+set background=dark
+silent! colorscheme hybrid
+
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+nnoremap <c-n> :lnext<CR>
+nnoremap <c-p> :lprev<CR>
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+ino jj <esc>
+cno jj <c-c>
+vno v <esc>
+nnoremap Q @q
